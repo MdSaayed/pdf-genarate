@@ -2,6 +2,13 @@
    Modern CSS Reset
 ----------------------------*/
 
+@font-face {
+    font-family: 'Nikosh';
+    src: url('../fonts/Nikosh.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 *,
 *::before,
 *::after {
@@ -21,9 +28,8 @@ html {
 body {
     min-height: 100vh;
     line-height: 1.2;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-        Roboto, Helvetica, Arial, sans-serif;
-    background-color: #fff;
+    background: rgb(243 243 243 / 1);
+    font-family: 'Nikosh', sans-serif;
 }
 
 img,
@@ -69,6 +75,10 @@ a {
     padding: 80px;
 }
 
+.text-center {
+    text-align: center !important;
+}
+
 /* Header */
 .header__logo {
     max-width: 200px;
@@ -92,8 +102,8 @@ a {
 .certificate__pdf::after {
     content: "";
     position: absolute;
-    width: 250px;
-    height: 250px;
+    width: 270px;
+    height: 270px;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -110,15 +120,15 @@ a {
 
 .certificate__pdf-subtitle {
     text-align: center;
-    font-size: 16px;
-    font-weight: normal;
-    margin: 5px 0 15px 0;
+    font-size: 17px;
+    font-weight: 500;
+    margin: 10px 0 20px 0;
 }
 
 .certificate__pdf-desc {
     text-align: center;
-    font-size: 16px;
-    font-weight: normal;
+    font-size: 17px;
+    font-weight: 500;
     max-width: 750px;
     margin: 0 auto;
 }
@@ -136,12 +146,17 @@ a {
     text-align: center;
     font-size: 28px;
     font-weight: 500;
-    margin-top: 1rem;
+    margin: 2rem 0;
 }
 
 .certificate__issuing-item-wrap {
     display: flex;
     justify-content: space-between;
+}
+
+.certificate__issuing-item {
+    max-width: 600px;
+    line-height: 1.6;
 }
 
 .certificate__issuing-list {
@@ -152,14 +167,18 @@ a {
 }
 
 .certificate__issuing-value {
-    font-size: 1rem;
-    font-weight: 500;
+    font-size: 14px;
+    font-weight: 600;
     text-transform: uppercase;
-
 }
 
 .certificate__issuing-item-img {
     margin-top: 1rem;
+}
+
+.signature-img{
+    margin: 0 auto;
+    text-align: center;
 }
 
 .certificate__signature {
@@ -170,9 +189,10 @@ a {
 
 .signature__text {
     text-transform: uppercase;
-    margin-left: 7rem;
+    margin-left: 6rem;
     line-height: 1.3;
-    font-size: 12px;
+    font-size: 10px;
+    font-weight: 500;
 }
 
 .certificate__notes {
@@ -181,9 +201,13 @@ a {
 }
 
 .certificate__notes li {
-    margin-bottom: 10px;
-    font-size: 12px;
+    font-size: 8px;
 }
+
+.certificate__notes li:not(:last-child) {
+    margin-bottom: 8px;
+}
+
 
 .certificate__notes span,
 .certificate__notes a {
@@ -192,4 +216,9 @@ a {
 
 .certificate__note-star {
     color: red;
+}
+
+.certificate__signature-right {
+    display: flex;
+    align-items: end;
 }
