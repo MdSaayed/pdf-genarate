@@ -27,7 +27,6 @@
         <div class="certificate__container container">
             <h1 class="certificate__title">অ্যাপোস্টিল</h1>
 
-            <!-- Need to print / download this certificate pdf -->
             <div id="certificate-pdf" class="certificate__pdf">
                 <div class="certificate__pdf-content">
                     <div class="certificate__pdf-header">
@@ -75,10 +74,10 @@
                             <div class="certificate__issuing-item-wrap">
                                 <li class="certificate__issuing-item">
                                     <span class="certificate__issuing-value">Seal/stamp</span>
-                                    <img class="certificate__issuing-item-img" src="./assets/img/seal.jpeg" alt="Seal"
+                                    <img class="certificate__issuing-item-img seal-img" src="./assets/img/seal.jpeg" alt="Seal"
                                         width="130" height="130">
                                 </li>
-                                <li class="certificate__issuing-item text-center">
+                                <li class="certificate__issuing-item">
                                     <span class="certificate__issuing-value">Signature </span>
                                     <img class="certificate__issuing-item-img signature-img"
                                         src="./assets/img/signature.png" alt="Signature" width="200">
@@ -124,8 +123,8 @@
             </div>
 
             <div class="certificate__actions">
-                <button class="certificate__download" onclick="download_pdf()">Download Pdf</button>
-                <button onclick="window.print()">Print</button>
+                <button class="certificate__download-btn" onclick="download_pdf()">Download Pdf</button>
+                <button class="certificate__print-btn" onclick="window.print()">Print</button>
             </div>
         </div>
     </section>

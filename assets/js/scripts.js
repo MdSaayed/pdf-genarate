@@ -1,17 +1,23 @@
 function download_pdf() {
     const pdfElement = document.getElementById("certificate-pdf");
 
+    const w = pdfElement.offsetWidth;
+    const h = pdfElement.offsetHeight;
+
     const opt = {
-        margin: 0, // মার্জিন ০ থাকার পরেও স্পেস আসলে নিচের অপশনগুলো দেখুন
-        filename: 'Invoice.pdf',
-        image: { type: 'jpeg', quality: 1 },
+        margin: 0,
+        filename: 'APOSTILLE.pdf',
+        image: { type: 'jpeg', quality: 0.98 },
         html2canvas: {
             scale: 2,
             useCORS: true,
-            scrollY: 0,  // <--- এই লাইনটি যোগ করুন (এটি স্ক্রল পজিশন রিসেট করে)
-            x: 0,        // <--- X-axis পজিশন ফিক্স করে
-            y: 0,        // <--- Y-axis পজিশন ফিক্স করে
-            letterRendering: true,
+            scrollY: 0,
+            scrollX: 0,
+            x: 0,
+            y: 0,
+            width: w,
+            height: h,
+            windowWidth: w,
         },
         jsPDF: {
             unit: 'mm',
