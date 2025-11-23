@@ -4,7 +4,7 @@
 
 @font-face {
     font-family: 'Nikosh';
-    src: url('../fonts/Nikosh.ttf') format('truetype');
+    src: url('../fonts/times.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
@@ -30,6 +30,7 @@ body {
     line-height: 1.2;
     background: rgb(243 243 243 / 1);
     font-family: 'Nikosh', sans-serif;
+    color: #333;
 }
 
 img,
@@ -93,11 +94,15 @@ a {
 
 .certificate__pdf {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    padding: 24px;
     position: relative;
     width: 210mm;
-    height: 297mm;
+    min-height: 297mm;
+    padding: 10mm;
+    background: white;
+    overflow: hidden;
+    box-sizing: border-box;
 }
+
 
 .certificate__pdf::after {
     content: "";
@@ -108,12 +113,13 @@ a {
     left: 50%;
     transform: translate(-50%, -50%);
     background: url('../img/govt-logo.jpeg') no-repeat center/cover;
-    z-index: -1;
+    background-size: contain !important;
+    z-index: 1;
 }
 
 .certificate__pdf-title {
     text-align: center;
-    font-size: 2rem;
+    font-size: 2.2rem;
     font-weight: 600;
     margin-top: 1rem;
 }
@@ -134,7 +140,7 @@ a {
 }
 
 .certificate__pdf-content {
-    border: 1px solid #000;
+    border: 1px solid #333;
     padding: 24px;
 }
 
@@ -144,9 +150,12 @@ a {
 
 .certificate__issuing-title {
     text-align: center;
-    font-size: 28px;
-    font-weight: 500;
+    font-weight: 600;
+    font-size: 2rem;
+    font-weight: 600;
     margin: 2rem 0;
+    position: relative;
+    z-index: 2;
 }
 
 .certificate__issuing-item-wrap {
@@ -157,13 +166,15 @@ a {
 .certificate__issuing-item {
     max-width: 600px;
     line-height: 1.6;
+    margin-left: 14px;
 }
 
 .certificate__issuing-list {
-    list-style-position: inside;
     padding-left: 0;
     margin-left: 0;
     line-height: 1.5;
+    position: relative;
+    z-index: 2;
 }
 
 .certificate__issuing-value {
@@ -176,7 +187,7 @@ a {
     margin-top: 1rem;
 }
 
-.signature-img{
+.signature-img {
     margin: 0 auto;
     text-align: center;
 }
@@ -222,3 +233,4 @@ a {
     display: flex;
     align-items: end;
 }
+

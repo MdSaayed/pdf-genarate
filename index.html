@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Apostille</title>
     <link rel="stylesheet" href="./assets/style/style.css">
+    <link rel="stylesheet" href="./assets/style/print.css" media="print">
+
 </head>
 
 <body>
@@ -25,7 +27,8 @@
         <div class="certificate__container container">
             <h1 class="certificate__title">অ্যাপোস্টিল</h1>
 
-            <div class="certificate__pdf">
+            <!-- Need to print / download this certificate pdf -->
+            <div id="certificate-pdf" class="certificate__pdf">
                 <div class="certificate__pdf-content">
                     <div class="certificate__pdf-header">
                         <h2 class="certificate__pdf-title">e-APOSTILLE</h2>
@@ -77,8 +80,8 @@
                                 </li>
                                 <li class="certificate__issuing-item text-center">
                                     <span class="certificate__issuing-value">Signature </span>
-                                    <img class="certificate__issuing-item-img signature-img" src="./assets/img/signature.png"
-                                        alt="Signature" width="200">
+                                    <img class="certificate__issuing-item-img signature-img"
+                                        src="./assets/img/signature.png" alt="Signature" width="200">
                                 </li>
                             </div>
                         </ol>
@@ -96,11 +99,13 @@
                             <p class="signature__text">foreign Affairs, Dhaka, BD</p>
 
                             <ul class="certificate__notes">
-                                <li class="certificate__note"><span class="certificate__note-star">*</span> To see the
+                                <li class="certificate__note"><span class="certificate__note-star">*</span> To see
+                                    the
                                     Apostille documents, please scan the QR code
                                 </li>
                                 <li class="certificate__note">
-                                    <span class="certificate__note-star">*</span> For verification of the e-Apostille,
+                                    <span class="certificate__note-star">*</span> For verification of the
+                                    e-Apostille,
                                     please visit:
                                     <a class="certificate__link"
                                         href="https://mofa-servicedirectory.apostille.mygov.bd">
@@ -117,8 +122,19 @@
                     </div>
                 </div>
             </div>
+
+            <div class="certificate__actions">
+                <button class="certificate__download" onclick="download_pdf()">Download Pdf</button>
+                <button onclick="window.print()">Print</button>
+            </div>
         </div>
     </section>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"
+        integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="./assets/js/scripts.js"></script>
 </body>
 
 </html>

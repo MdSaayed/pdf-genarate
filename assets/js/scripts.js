@@ -1,23 +1,24 @@
-// Print functionality
-function printDocument() {
-    window.print();
+function download_pdf() {
+    const pdfElement = document.getElementById("certificate-pdf");
+
+    const opt = {
+        margin: 0, // মার্জিন ০ থাকার পরেও স্পেস আসলে নিচের অপশনগুলো দেখুন
+        filename: 'Invoice.pdf',
+        image: { type: 'jpeg', quality: 1 },
+        html2canvas: {
+            scale: 2,
+            useCORS: true,
+            scrollY: 0,  // <--- এই লাইনটি যোগ করুন (এটি স্ক্রল পজিশন রিসেট করে)
+            x: 0,        // <--- X-axis পজিশন ফিক্স করে
+            y: 0,        // <--- Y-axis পজিশন ফিক্স করে
+            letterRendering: true,
+        },
+        jsPDF: {
+            unit: 'mm',
+            format: 'a4',
+            orientation: 'portrait'
+        }
+    };
+
+    html2pdf().set(opt).from(pdfElement).save();
 }
-
-// Add keyboard shortcut for printing (Ctrl+P or Cmd+P)
-document.addEventListener('keydown', function (event) {
-    if ((event.ctrlKey || event.metaKey) && event.key === 'p') {
-        event.preventDefault();
-        printDocument();
-    }
-});
-
-// Optional: Add download functionality
-function downloadDocument() {
-    // This would require a server-side solution or a library like html2pdf
-    alert('Download functionality would require additional setup.');
-}
-
-// Log when document is ready
-document.addEventListener('DOMContentLoaded', function () {
-    console.log('e-APOSTILLE document loaded successfully');
-});
