@@ -19,6 +19,7 @@
         padding: 0;
         padding-top: 10mm;
         background: #fff;
+        box-shadow: none;
     }
 
     @page {

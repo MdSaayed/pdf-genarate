@@ -252,11 +252,6 @@ a {
     font-size: 16px;
 }
 
-
-
-
-
-
 /* Responsive */
 @media (max-width: 1200px) {
     .container {
@@ -277,18 +272,10 @@ a {
 @media (max-width: 768px) {
     .container {
         max-width: 720px;
-        padding: 20px;
+        padding: 40px 20px;
     }
 
-    .certificate__title{
+    .certificate__title {
         margin-top: 2rem;
-    }
-}
-
-/* Small Mobile */
-@media (max-width: 480px) {
-    .container {
-        max-width: 100%;
-        padding: 10px;
     }
 }
