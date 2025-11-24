@@ -29,32 +29,51 @@ function download_pdf() {
     html2pdf().set(opt).from(pdfElement).save();
 }
 
+function getBrowserZoomLevel() {
+    return window.devicePixelRatio || 1;
+}
 
-// Function to scale the A4 certificate based on screen width
+// Function to scale the A4 certificate based on screen width and zoom level
 function scaleCertificate() {
-    const certificate = document.getElementById('certificate-pdf');
-    const container = document.querySelector('.certificate__container');
-    const originalWidth = 794; // Original width in pixels (210mm)
-    const screenWidth = window.innerWidth;
+    // const certificate = document.getElementById('certificate-pdf');
+    const certificate = document.getElementsByClassName('certificate__pdf-wrap');
+    const originalWidth = 794;
 
-    // Calculate scale factor to fit screen with some padding
-    const padding = 40; // 20px on each side
-    const maxWidth = screenWidth - padding;
+    const zoomLevel = getBrowserZoomLevel();
+    const actualViewportWidth = window.innerWidth - 100;
+    const correctedViewportWidth = actualViewportWidth / zoomLevel;
 
-    if (maxWidth < originalWidth) {
-        // Scale down to fit screen
-        const scale = maxWidth / originalWidth;
-        certificate.style.transform = `scale(${scale})`;
-        container.style.maxWidth = `${maxWidth}px`;
-    } else {
-        // Keep original size
-        certificate.style.transform = 'scale(1)';
-        container.style.maxWidth = `${originalWidth}px`;
+    // Progressive scaling - gradually decreases scale
+    let scale = 1;
+    if (correctedViewportWidth > 794) {
+        scale = 1;
     }
+    if (correctedViewportWidth < 600) {
+        scale = 0.8;
+    }
+    if (correctedViewportWidth < 450) {
+        scale = 0.5;
+    }
+    if (correctedViewportWidth < 350) {
+        scale = 0.4;
+    }
+    if (correctedViewportWidth < 300) {
+        scale = 0.25;
+    }
+    certificate.style.transform = `scale(${scale})`;
 }
 
 // Initial scaling
 scaleCertificate();
 
-// Resize event listener
-window.addEventListener('resize', scaleCertificate);
+// Resize event listener with debouncing
+let resizeTimeout;
+window.addEventListener('resize', function () {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(scaleCertificate, 100);
+});
+
+// Also handle orientation changes
+window.addEventListener('orientationchange', function () {
+    setTimeout(scaleCertificate, 100);
+});
