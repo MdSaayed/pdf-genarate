@@ -101,6 +101,7 @@ a {
     position: relative;
     box-sizing: border-box;
     overflow: visible;
+    scale: 1;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
@@ -279,3 +280,5 @@ a {
         margin-top: 2rem;
     }
 }
+
+

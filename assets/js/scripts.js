@@ -28,3 +28,5 @@ function download_pdf() {
 
     html2pdf().set(opt).from(pdfElement).save();
 }
+
+
