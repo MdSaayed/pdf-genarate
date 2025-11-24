@@ -20,6 +20,8 @@
         padding-top: 10mm;
         background: #fff;
         box-shadow: none;
+        transform: none !important;
+
     }
 
     @page {
@@ -27,3 +29,7 @@
         margin: 0;
     }
 }
+
+
+
+ 

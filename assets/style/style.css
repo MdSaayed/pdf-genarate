@@ -281,3 +281,16 @@ a {
 }
 
 
+.certificate__pdf {
+    transform-origin: top center;
+    /* Added this line */
+}
+
+body {
+    display: flex;
+    /* Added */
+    flex-direction: column;
+    /* Added */
+    align-items: center;
+    /* Added */
+}

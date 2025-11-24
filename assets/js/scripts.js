@@ -30,6 +30,7 @@ function download_pdf() {
 }
 
 
+// Function to scale the A4 certificate based on screen width
 function scaleCertificate() {
     const certificate = document.getElementById('certificate-pdf');
     const container = document.querySelector('.certificate__container');
