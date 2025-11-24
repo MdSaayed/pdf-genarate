@@ -30,3 +30,30 @@ function download_pdf() {
 }
 
 
+function scaleCertificate() {
+    const certificate = document.getElementById('certificate-pdf');
+    const container = document.querySelector('.certificate__container');
+    const originalWidth = 794; // Original width in pixels (210mm)
+    const screenWidth = window.innerWidth;
+
+    // Calculate scale factor to fit screen with some padding
+    const padding = 40; // 20px on each side
+    const maxWidth = screenWidth - padding;
+
+    if (maxWidth < originalWidth) {
+        // Scale down to fit screen
+        const scale = maxWidth / originalWidth;
+        certificate.style.transform = `scale(${scale})`;
+        container.style.maxWidth = `${maxWidth}px`;
+    } else {
+        // Keep original size
+        certificate.style.transform = 'scale(1)';
+        container.style.maxWidth = `${originalWidth}px`;
+    }
+}
+
+// Initial scaling
+scaleCertificate();
+
+// Resize event listener
+window.addEventListener('resize', scaleCertificate);

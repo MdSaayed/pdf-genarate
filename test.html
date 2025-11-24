@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apostille Certificate</title>
+    <style>
+        /* ---------------------------
+           Modern CSS Reset
+        ----------------------------*/
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            -webkit-text-size-adjust: 100%;
+            text-rendering: optimizeLegibility;
+        }
+
+        body {
+            min-height: 100vh;
+            line-height: 1.2;
+            background: rgb(243 243 243 / 1);
+            font-family: Arial, sans-serif;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        img,
+        picture,
+        video,
+        canvas,
+        svg {
+            display: block;
+            max-width: 100%;
+        }
+
+        input,
+        button,
+        textarea,
+        select {
+            font: inherit;
+            border: none;
+            outline: none;
+            background: none;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        a {
+            display: inline-block;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0 !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0 !important;
+                scroll-behavior: auto !important;
+            }
+        }
+
+        /* Basic Style */
+        .container {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 80px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+
+        .text-center {
+            text-align: center !important;
+        }
+
+        /* Header */
+        .header {
+            width: 100%;
+        }
+
+        .header__container {
+            display: flex;
+            justify-content: center;
+        }
+
+        .header__logo {
+            max-width: 200px;
+        }
+
+        /* Certificate */
+        .certificate__title {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+        }
+
+        .certificate__pdf {
+            width: 794px; /* 210mm in pixels */
+            height: 1123px; /* 297mm in pixels */
+            padding: 30px; /* 8mm in pixels */
+            background: white;
+            box-shadow: none;
+            position: relative;
+            box-sizing: border-box;
+            overflow: visible;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            transform-origin: top center;
+        }
+
+        .certificate__pdf::after {
+            content: "";
+            position: absolute;
+            width: 270px;
+            height: 270px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="270" height="270" viewBox="0 0 270 270"><rect width="270" height="270" fill="%23f0f0f0"/><text x="135" y="135" font-family="Arial" font-size="24" text-anchor="middle" dy=".3em">Govt Logo</text></svg>') no-repeat center/cover;
+            background-size: contain !important;
+            z-index: 1;
+        }
+
+        .certificate__pdf-content {
+            border: 1px solid #333;
+            padding: 24px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .certificate__pdf-title {
+            text-align: center;
+            font-size: 2.2rem;
+            font-weight: 600;
+            margin-top: 1rem;
+        }
+
+        .certificate__pdf-subtitle {
+            text-align: center;
+            font-size: 17px;
+            font-weight: 500;
+            margin: 10px 0 20px 0;
+        }
+
+        .certificate__pdf-desc {
+            text-align: center;
+            font-size: 17px;
+            font-weight: 500;
+            max-width: 750px;
+            margin: 0 auto;
+        }
+
+        .certificate__issuing {
+            margin: 3rem 0 2rem 0;
+            flex-grow: 1;
+        }
+
+        .certificate__issuing-title {
+            text-align: center;
+            font-weight: 600;
+            font-size: 2rem;
+            font-weight: 600;
+            margin: 2rem 0;
+            position: relative;
+            z-index: 2;
+        }
+
+        .certificate__issuing-item-wrap {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .certificate__issuing-item {
+            max-width: 600px;
+            line-height: 1.6;
+            margin-left: 14px;
+        }
+
+        .certificate__issuing-list {
+            padding-left: 0;
+            margin-left: 0;
+            line-height: 1.5;
+            position: relative;
+            z-index: 2;
+        }
+
+        .certificate__issuing-value {
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .seal-img {
+            margin-top: 1rem;
+            width: 130px;
+            height: 130px;
+        }
+
+        .signature-img {
+            margin-left: -14px;
+            max-width: 150px;
+        }
+
+        .certificate__signature {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 2rem;
+        }
+
+        .signature__text {
+            text-transform: uppercase;
+            margin-left: 6rem;
+            line-height: 1.3;
+            font-size: 10px;
+            font-weight: 500;
+        }
+
+        .certificate__notes {
+            margin-top: 2rem;
+            list-style: none;
+        }
+
+        .certificate__notes li {
+            font-size: 8px;
+        }
+
+        .certificate__notes li:not(:last-child) {
+            margin-bottom: 8px;
+        }
+
+        .certificate__notes span,
+        .certificate__notes a {
+            display: inline-block;
+        }
+
+        .certificate__note-star {
+            color: red;
+        }
+
+        .certificate__signature-right {
+            display: flex;
+            align-items: end;
+        }
+
+        .certificate__qr {
+            width: 150px;
+            height: 140px;
+        }
+
+        .certificate__actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+            justify-content: start;
+        }
+
+        .certificate__download-btn,
+        .certificate__print-btn {
+            background: rgb(0, 123, 255);
+            border: none;
+            padding: 8px 16px;
+            color: #fff;
+            border-radius: 3px;
+            font-size: 16px;
+        }
+
+        .certificate__download-btn:hover,
+        .certificate__print-btn:hover {
+            background: rgb(0, 105, 217);
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .container {
+                max-width: 1140px;
+                padding: 60px;
+            }
+        }
+
+        /* Tablet */
+        @media (max-width: 992px) {
+            .container {
+                max-width: 960px;
+                padding: 40px;
+            }
+        }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            .container {
+                max-width: 720px;
+                padding: 40px 20px;
+            }
+
+            .certificate__title {
+                margin-top: 2rem;
+            }
+        }
+
+        /* Print Styles */
+        @media print {
+            .header,
+            .certificate__actions,
+            .certificate__title {
+                display: none;
+            }
+
+            .container {
+                padding: 0;
+                margin: 0;
+            }
+
+            .certificate__pdf {
+                box-shadow: none;
+                margin: 0 auto;
+                width: 210mm;
+                min-height: 297mm;
+                padding: 0;
+                padding-top: 10mm;
+                background: #fff;
+                box-shadow: none;
+                transform: none !important;
+            }
+
+            @page {
+                size: A4;
+                margin: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header__container container">
+            <div class="header__content">
+                <div class="header__logo-wrap">
+                    <a href="/" class="header__logo-link">
+                        <img class="header__logo" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='60' viewBox='0 0 200 60'><rect width='200' height='60' fill='%230052cc'/><text x='100' y='35' font-family='Arial' font-size='16' fill='white' text-anchor='middle'>Organization Logo</text></svg>" alt="Logo">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="certificate">
+        <div class="certificate__container container">
+            <h1 class="certificate__title">অ্যাপোস্টিল</h1>
+
+            <div id="certificate-pdf" class="certificate__pdf">
+                <div class="certificate__pdf-content">
+                    <div class="certificate__pdf-header">
+                        <h2 class="certificate__pdf-title">e-APOSTILLE</h2>
+                        <p class="certificate__pdf-subtitle">(Convention de La Haye du 5 octobre 1961)</p>
+                        <p class="certificate__pdf-desc">(Also valid for the countries that are not in reciprocal arrangement with Bangladesh under the Apostille Convention of 1961, subject to proper legalisation)</p>
+                    </div>
+
+                    <div class="certificate__issuing">
+                        <h2 class="certificate__issuing-title">Issuing Authority</h2>
+
+                        <ol class="certificate__issuing-list">
+                            <li class="certificate__issuing-item">Country: <span class="certificate__issuing-value">BANGLADESH</span></li>
+                            <p class="certificate__issuing-text">The public document</p>
+                            <li class="certificate__issuing-item">
+                                has been signed by:
+                                <span class="certificate__issuing-value">CHAIRMAN</span>
+                            </li>
+                            <li class="certificate__issuing-item">
+                                acting in the capacity of:
+                                <span class="certificate__issuing-value">CHAIRMAN</span>
+                            </li>
+                            <li class="certificate__issuing-item">
+                                bears the seal/stamp of:
+                                <span class="certificate__issuing-value">
+                                    10 NO AGARDARI UNION PARISHAD SATKHIRA SADAR SATKHIRA
+                                </span>
+                            </li>
+
+                            <h2 class="certificate__issuing-title">Certified</h2>
+
+                            <li class="certificate__issuing-item"> at <span class="certificate__issuing-value">Dhaka, Bangladesh</span></li>
+                            <li class="certificate__issuing-item"> the <span class="certificate__issuing-value">19-Nov-2025</span></li>
+                            <li class="certificate__issuing-item"> by <span class="certificate__issuing-value">
+                                    Md. Shoaib-Ul-Islam Tarafder ,
+                                    <br />Senior Assistant Secretary , Ministry of Foreign Affairs</span></li>
+                            <li class="certificate__issuing-item"> No <span class="certificate__issuing-value">
+                                    717969372742</span></li>
+                            <div class="certificate__issuing-item-wrap">
+                                <li class="certificate__issuing-item">
+                                    <span class="certificate__issuing-value">Seal/stamp</span>
+                                    <img class="certificate__issuing-item-img seal-img" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='130' height='130' viewBox='0 0 130 130'><circle cx='65' cy='65' r='60' fill='%23d40000'/><circle cx='65' cy='65' r='45' fill='white'/><circle cx='65' cy='65' r='30' fill='%23d40000'/><text x='65' y='70' font-family='Arial' font-size='10' fill='white' text-anchor='middle'>SEAL</text></svg>" alt="Seal">
+                                </li>
+                                <li class="certificate__issuing-item">
+                                    <span class="certificate__issuing-value">Signature </span>
+                                    <img class="certificate__issuing-item-img signature-img" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='80' viewBox='0 0 200 80'><path d='M10,40 Q50,20 90,30 Q130,40 150,50 Q170,60 190,55' stroke='black' stroke-width='2' fill='none'/><path d='M10,60 Q40,45 80,55 Q120,65 140,70 Q160,75 190,70' stroke='black' stroke-width='2' fill='none'/></svg>" alt="Signature">
+                                </li>
+                            </div>
+                        </ol>
+                    </div>
+
+                    <div class="certificate__signature">
+                        <div class="certificate__signature-left">
+                            <p class="signature__text">Digitally signed by Md.</p>
+                            <p class="signature__text">Shoaib-Ul-Islam Tarafder</p>
+                            <p class="signature__text">Date: 2025.11.19</p>
+                            <p class="signature__text">16:04:38 +06:00</p>
+                            <p class="signature__text">Reason: Document</p>
+                            <p class="signature__text">Signing</p>
+                            <p class="signature__text">Location: "Ministry of</p>
+                            <p class="signature__text">foreign Affairs, Dhaka, BD</p>
+
+                            <ul class="certificate__notes">
+                                <li class="certificate__note"><span class="certificate__note-star">*</span> To see the Apostille documents, please scan the QR code</li>
+                                <li class="certificate__note">
+                                    <span class="certificate__note-star">*</span> For verification of the e-Apostille, please visit:
+                                    <a class="certificate__link" href="https://mofa-servicedirectory.apostille.mygov.bd">
+                                        https://mofa-servicedirectory.apostille.mygov.bd
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="certificate__signature-right">
+                            <img class="certificate__qr" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='150' height='140' viewBox='0 0 150 140'><rect width='150' height='140' fill='white'/><rect x='20' y='20' width='110' height='100' fill='black'/><rect x='30' y='30' width='20' height='20' fill='white'/><rect x='60' y='30' width='20' height='20' fill='white'/><rect x='90' y='30' width='20' height='20' fill='white'/><rect x='30' y='60' width='20' height='20' fill='white'/><rect x='60' y='60' width='20' height='20' fill='white'/><rect x='90' y='60' width='20' height='20' fill='white'/><rect x='30' y='90' width='20' height='20' fill='white'/><rect x='60' y='90' width='20' height='20' fill='white'/><rect x='90' y='90' width='20' height='20' fill='white'/></svg>" alt="QR Code" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="certificate__actions">
+                <button class="certificate__download-btn" onclick="download_pdf()">Download Pdf</button>
+                <button class="certificate__print-btn" onclick="window.print()">Print</button>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Function to scale the A4 certificate based on screen width
+        function scaleCertificate() {
+            const certificate = document.getElementById('certificate-pdf');
+            const container = document.querySelector('.certificate__container');
+            const originalWidth = 794; // Original width in pixels (210mm)
+            const screenWidth = window.innerWidth;
+            
+            // Calculate scale factor to fit screen with some padding
+            const padding = 40; // 20px on each side
+            const maxWidth = screenWidth - padding;
+            
+            if (maxWidth < originalWidth) {
+                // Scale down to fit screen
+                const scale = maxWidth / originalWidth;
+                certificate.style.transform = `scale(${scale})`;
+                container.style.maxWidth = `${maxWidth}px`;
+            } else {
+                // Keep original size
+                certificate.style.transform = 'scale(1)';
+                container.style.maxWidth = `${originalWidth}px`;
+            }
+        }
+
+        // Initial scaling
+        scaleCertificate();
+
+        // Resize event listener
+        window.addEventListener('resize', scaleCertificate);
+
+        // PDF download function
+        function download_pdf() {
+            alert("PDF download functionality would be implemented here. In a real implementation, you would use a library like html2pdf.js");
+            // For a real implementation, you would use:
+            // const element = document.getElementById('certificate-pdf');
+            // html2pdf().from(element).save();
+        }
+    </script>
+</body>
+</html>
