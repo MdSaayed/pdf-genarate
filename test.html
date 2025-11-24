@@ -34,6 +34,7 @@
             flex-direction: column;
             align-items: center;
             padding: 20px;
+            overflow-x: hidden; /* Prevent horizontal scroll */
         }
 
         img,
@@ -448,16 +449,25 @@
     </section>
 
     <script>
-        // Function to scale the A4 certificate based on screen width
+        // Function to get the actual zoom level
+        function getBrowserZoomLevel() {
+            return window.devicePixelRatio || 1;
+        }
+
+        // Function to scale the A4 certificate based on screen width and zoom level
         function scaleCertificate() {
             const certificate = document.getElementById('certificate-pdf');
             const container = document.querySelector('.certificate__container');
             const originalWidth = 794; // Original width in pixels (210mm)
-            const screenWidth = window.innerWidth;
+            
+            // Get the actual viewport width considering zoom
+            const zoomLevel = getBrowserZoomLevel();
+            const actualViewportWidth = window.innerWidth;
+            const correctedViewportWidth = actualViewportWidth / zoomLevel;
             
             // Calculate scale factor to fit screen with some padding
             const padding = 40; // 20px on each side
-            const maxWidth = screenWidth - padding;
+            const maxWidth = correctedViewportWidth - padding;
             
             if (maxWidth < originalWidth) {
                 // Scale down to fit screen
@@ -469,20 +479,28 @@
                 certificate.style.transform = 'scale(1)';
                 container.style.maxWidth = `${originalWidth}px`;
             }
+            
+            console.log('Zoom level:', zoomLevel, 'Viewport width:', actualViewportWidth, 'Corrected width:', correctedViewportWidth);
         }
 
         // Initial scaling
         scaleCertificate();
 
-        // Resize event listener
-        window.addEventListener('resize', scaleCertificate);
+        // Resize event listener with debouncing
+        let resizeTimeout;
+        window.addEventListener('resize', function() {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(scaleCertificate, 100);
+        });
+
+        // Also handle orientation changes
+        window.addEventListener('orientationchange', function() {
+            setTimeout(scaleCertificate, 100);
+        });
 
         // PDF download function
         function download_pdf() {
             alert("PDF download functionality would be implemented here. In a real implementation, you would use a library like html2pdf.js");
-            // For a real implementation, you would use:
-            // const element = document.getElementById('certificate-pdf');
-            // html2pdf().from(element).save();
         }
     </script>
 </body>
