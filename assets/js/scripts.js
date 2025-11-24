@@ -33,11 +33,13 @@ function getBrowserZoomLevel() {
     return window.devicePixelRatio || 1;
 }
 
-// Function to scale the A4 certificate based on screen width and zoom level
 function scaleCertificate() {
-    // const certificate = document.getElementById('certificate-pdf');
-    const certificate = document.getElementsByClassName('certificate__pdf-wrap');
+    // const certificate = document.getElementsByClassName('certificate__pdf-wrap');
+    const certificate = document.getElementsByClassName('certificate__pdf-wrap')[0];
+
     const originalWidth = 794;
+
+    if (!certificate) return;
 
     const zoomLevel = getBrowserZoomLevel();
     const actualViewportWidth = window.innerWidth - 100;
@@ -77,3 +79,5 @@ window.addEventListener('resize', function () {
 window.addEventListener('orientationchange', function () {
     setTimeout(scaleCertificate, 100);
 });
+
+
